@@ -2,6 +2,7 @@ import { Sequelize } from "sequelize";
 import { sequelize } from "../db/index.js";
 
 export const Task = sequelize.define(
+  "Task",
   {
     id: {
       type: Sequelize.INTEGER,
@@ -14,8 +15,16 @@ export const Task = sequelize.define(
       allowNull: false,
     },
     priority: {
-      type: Sequelize.STRING,
+      type: Sequelize.INTEGER,
       allowNull: false,
+    },
+    complete_by: {
+      type: Sequelize.STRING,
+      allowNull: true,
+    },
+    completion_time: {
+      type: Sequelize.STRING,
+      allowNull: true,
     },
   },
   {
