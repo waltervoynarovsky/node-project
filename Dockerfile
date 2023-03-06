@@ -1,17 +1,16 @@
 FROM node:17
 
 # Working Dir
-WORKDIR /node-project
-
+WORKDIR /usr/src/app
 
 # Copy Package Json File
 COPY package*.json ./
+COPY . .
 
 # Install files
-RUN npm install -g
+RUN npm install
 
 # Copy Source Files
-COPY . .
 
 EXPOSE 8080
 
