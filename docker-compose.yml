@@ -1,0 +1,28 @@
+version: "3.4"
+
+services:
+  db:
+    container_name: todo-db
+    image: mysql:8
+    ports:
+      - 3000:3000
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      - MYSQL_ROOT_PASSWORD=$DB_PW
+    healthcheck:
+      test: mysqladmin ping -h 127.0.0.1 -u root --password=$$MYSQL_ROOT_PASSWORD
+
+  api:
+    build:
+      dockerfile: Dockerfile
+    ports:
+      - 8080:8080
+    environment:
+      - DB_HOST=$DB_HOST
+      - DB_USER=$DB_USER
+      - DB_PASSWORD=$DB_PW
+      - DB_NAME=$DB_NAME
+      - DB_PORT=$PORT
+    depends_on:
+      - db
