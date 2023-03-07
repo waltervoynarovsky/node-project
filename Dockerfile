@@ -1,11 +1,10 @@
-FROM node:17
+FROM node:16
 
 # Working Dir
 WORKDIR /usr/src/app
 
-# Copy Package Json File
-COPY package*.json ./
-COPY . .
+# COPY package*.json ./
+COPY . /usr/src/app
 
 # Install files
 RUN npm install
